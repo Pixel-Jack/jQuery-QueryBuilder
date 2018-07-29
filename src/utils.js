@@ -263,3 +263,15 @@ Utils.defineModelProperties = function(obj, fields) {
         });
     });
 };
+
+/**
+ * Sort by key an array
+ *      Update array given in parameter
+ * @param {Array} arr
+ * @param {string} key
+ */
+Utils.sortByKey = function(arr, key) {
+    arr.sort(function(a, b) {
+        return a[key] > b[key] ? 1 : a[key] < b[key] ? -1 : 0;
+    });
+};

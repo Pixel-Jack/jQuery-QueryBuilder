@@ -17,6 +17,15 @@ jQuery plugin offering an simple interface to create complex queries.
 
 
 
+### New plugin:
+
+#### Add Super Group:
+You can now add a super group above the current group in order.
+Options : icon (string or object)
+
+
+
+
 ## Install
 
 #### Manually
