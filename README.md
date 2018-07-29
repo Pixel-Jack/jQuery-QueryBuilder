@@ -15,6 +15,29 @@ jQuery plugin offering an simple interface to create complex queries.
 ## Documentation
 [querybuilder.js.org](https://querybuilder.js.org)
 
+### Added features :
+#### Icons:
+Now you can set an image in two ways:
+```javascript 
+add_group: {
+    class: 'material-icons', 
+    name:'add',
+    with_text: true
+}
+```
+Will result to
+```HTML
+<i class="material-icons">add</i> Add group
+``` 
+or
+```
+add_group: 'fas fa-plus-circle'
+```
+Will result to
+```HTML
+<i class="fas fa-plus-circle"></i> Add group
+```
+
 
 
 ## Install

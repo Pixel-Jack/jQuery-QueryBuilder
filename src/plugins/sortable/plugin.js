@@ -5,7 +5,10 @@
  * @param {object} [options]
  * @param {boolean} [options.inherit_no_drop=true]
  * @param {boolean} [options.inherit_no_sortable=true]
- * @param {string} [options.icon='glyphicon glyphicon-sort']
+ * @param {string|Object} [options.icon='glyphicon glyphicon-sort']
+ * @param {string} options.icon.class - <i class="${class}">${name}</i> Add group (with or without text according with_text)
+ * @param {string} options.icon.name - <i class="${class}">${name}</i> Add group (with or without text according with_text)
+ * @param {string} options.icon.with_text - <i class="${class}">${name}</i> Add group (with or without text according with_text)
  * @throws MissingLibraryError, ConfigError
  */
 QueryBuilder.define('sortable', function(options) {
@@ -163,14 +166,29 @@ QueryBuilder.define('sortable', function(options) {
         this.on('getGroupTemplate.filter', function(h, level) {
             if (level > 1) {
                 var $h = $(h.value);
-                $h.find(QueryBuilder.selectors.condition_container).after('<div class="drag-handle"><i class="' + options.icon + '"></i></div>');
+
+                var ico;
+                if (typeof options.icon === 'string') {
+                    ico = '<div class="drag-handle"><i class="' + options.icon + '"></i></div>';
+                } else {
+                    ico = '<div class="drag-handle"><i class="' + options.icon.class + '">' + options.icon.name + '</i></div>';
+                }
+
+                $h.find(QueryBuilder.selectors.condition_container).after(ico);
                 h.value = $h.prop('outerHTML');
             }
         });
 
         this.on('getRuleTemplate.filter', function(h) {
             var $h = $(h.value);
-            $h.find(QueryBuilder.selectors.rule_header).after('<div class="drag-handle"><i class="' + options.icon + '"></i></div>');
+
+            var ico;
+            if (typeof options.icon === 'string') {
+                ico = '<div class="drag-handle"><i class="' + options.icon + '"></i></div>';
+            } else {
+                ico = '<div class="drag-handle"><i class="' + options.icon.class + '">' + options.icon.name + '</i></div>';
+            }
+            $h.find(QueryBuilder.selectors.rule_header).after(ico);
             h.value = $h.prop('outerHTML');
         });
     }
